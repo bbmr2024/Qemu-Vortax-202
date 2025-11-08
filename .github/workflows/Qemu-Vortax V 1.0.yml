@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       system_choice:
-        description: 'Choose a ready system (mint, pear, bazite, kali, bliss_free, bliss_gapps, neon, deepin, garuda_mokka, ubuntu, popos, manjaro, cutefish, debian_qcow2, centos_qcow2, kali_qcow2)'
+        description: 'Choose a ready system (mint, pear, bazite, kali, bliss_free, bliss_gapps, neon, deepin, garuda_mokka, ubuntu, popos, debian_qcow2, centos_qcow2, kali_qcow2)'
         required: false
         default: ''
       boot_mode:
@@ -87,7 +87,7 @@ jobs:
           
           declare -A ISO_URLS
           ISO_URLS["mint"]="https://pub.linuxmint.io/stable/22.2/linuxmint-22.2-cinnamon-64bit.iso"
-          ISO_URLS["pear"]="https://www.mediafire.com/file/7ztcyqd2ggiv58p/pearOS-NiceC0re-2025.11-x86_64.iso"
+          ISO_URLS["pear"]="https://eu-east-cdn.pearos.xyz/pearOS-NiceC0re-2025.11-x86_64.iso"
           ISO_URLS["bazite"]="https://download.bazzite.gg/bazzite-stable-live.iso"
           ISO_URLS["kali"]="https://kali.download/base-images/kali-2025.3/kali-linux-2025.3-live-amd64.iso"
           ISO_URLS["bliss_gapps"]="https://dn720203.ca.archive.org/0/items/Bliss-v15.9-x86_64-OFFICIAL-gapps-20240114/Bliss-v15.9-x86_64-OFFICIAL-gapps-20240114.iso"
