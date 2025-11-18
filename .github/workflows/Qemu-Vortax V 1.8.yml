@@ -416,41 +416,43 @@ jobs:
           fi
 
       - name: Connection Information and Keep Alive
-  run: |
-    echo "Thanks to MR.English2008 for this perfect work"
-    echo
-    echo "=== CONNECTION INFORMATION ==="
-    echo "RDP Username: ${USERNAME}"
-    echo "RDP Password: ${PASSWORD}"
-    echo
-    echo "Connection Type: ${{ env.CONNECTION_TYPE }}"
-    echo "Program Selected: ${{ github.event.inputs.connection_program }}"
-    echo
-    if [ "${{ env.CONNECTION_TYPE }}" = "Tailscale" ]; then
-      echo "Tailscale IP:"
-      sudo tailscale ip -4 || true
-      echo
-      echo ">>> RDP Connection: ${{ env.CONNECTION_IP }}"
-      echo ">>> VNC Connection: ${{ env.CONNECTION_IP }}"
-      echo ">>> NoMachine Connection: ${{ env.CONNECTION_IP }}"
-    else
-      if [ "${{ github.event.inputs.connection_program }}" = "RDP" ]; then
-        echo ">>> RDP (Ngrok): ${{ env.RDP_URL }}"
-      elif [ "${{ github.event.inputs.connection_program }}" = "VNC" ]; then
-        echo ">>> VNC (Ngrok): ${{ env.VNC_URL }}"
-      elif [ "${{ github.event.inputs.connection_program }}" = "NoMachine" ]; then
-        echo ">>> NoMachine (Ngrok): ${{ env.NX_URL }}"
-      fi
-    fi
-    echo
-    echo "NOTE: if you connect with RDP or VNC you have to click on Connect_VNC.sh to open the qemu VM"
-    echo
-    echo "NOTE: if you did connect with RDP or NoMachine and open Connect_VNC.sh you will not be able to connect to VNC unless you disconnect from RDP or NoMachine"
-    echo
-    echo "NOTE: to disconnect type F8 from client keyboard a menu will appear click on Disconnect then you will be able to connect with VNC viewer again"
-    echo
-    echo "Have fun "
-    RUNTIME="${{ github.event.inputs.runtime }}"
-    echo "Keeping the session alive for ${RUNTIME} minutes..."
-    sleep $((RUNTIME * 60))
-    echo "Session ended after ${RUNTIME} minutes."
+        run: |
+          echo "Thanks to MR.English2008 for this perfect work"
+          echo
+          echo "=== CONNECTION INFORMATION ==="
+          echo "RDP Username: ${USERNAME}"
+          echo "RDP Password: ${PASSWORD}"
+          echo
+          echo "Connection Type: ${{ env.CONNECTION_TYPE }}"
+          echo "Program Selected: ${{ github.event.inputs.connection_program }}"
+          echo
+          if [ "${{ env.CONNECTION_TYPE }}" = "Tailscale" ]; then
+            echo "Tailscale IP:"
+            sudo tailscale ip -4 || true
+            echo
+            echo ">>> RDP Connection: ${{ env.CONNECTION_IP }}"
+            echo ">>> VNC Connection: ${{ env.CONNECTION_IP }}"
+            echo ">>> NoMachine Connection: ${{ env.CONNECTION_IP }}"
+          else
+            if [ "${{ github.event.inputs.connection_program }}" = "RDP" ]; then
+              echo ">>> RDP (Ngrok): ${{ env.RDP_URL }}"
+            elif [ "${{ github.event.inputs.connection_program }}" = "VNC" ]; then
+              echo ">>> VNC (Ngrok): ${{ env.VNC_URL }}"
+            elif [ "${{ github.event.inputs.connection_program }}" = "NoMachine" ]; then
+              echo ">>> NoMachine (Ngrok): ${{ env.NX_URL }}"
+            fi
+          fi
+          echo
+          echo
+          echo  
+          echo "NOTE: if you connect with RDP or VNC you have to click on Connect_VNC.sh to open the qemu VM"  
+          echo  
+          echo "NOTE: if you did connect with RDP or NoMachine and open Connect_VNC.sh you will not be able to connect to VNC unless you disconnect from RDP or NoMachine"  
+          echo  
+          echo "NOTE: to disconnect type F8 from client keyboard a menu will appear click on Disconnect then you will be able to connect with VNC viewer again"  
+          echo  
+          echo "Have fun "
+          RUNTIME="${{ github.event.inputs.runtime }}"
+          echo "Keeping the session alive for ${RUNTIME} minutes..."
+          sleep $((RUNTIME * 60))
+          echo "Session ended after ${RUNTIME} minutes."
