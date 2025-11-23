@@ -1,11 +1,11 @@
 ---
 
 # Qemu-Vortax V 2.0
-![Qemu-Vortax](assets/qemuvortax_v2.0.png)
+![Qemu-Vortax](assets/qemuvortax.png)
 
 Run any operating system (ISO, QCOW2, or compressed archive) directly on **GitHub Actions** with full graphical access through **RDP**, **VNC** (Password Protected) and **NoMachine** Via **Tailscale** and **Ngrok**. Preserve your VM disk using **Automatic MEGA Upload**.
 
-![Forks](https://img.shields.io/github/forks/qemuvortax/qemuvortax?style=plastic&logo=github&logoColor=white&color=00bfff)!       [Tag](https://img.shields.io/github/v/tag/qemuvortax/qemuvortax?style=plastic&logo=github&logoColor=white&color=00bfff)
+![Forks](https://img.shields.io/github/forks/qemuvortax/qemuvortax?style=plastic&logo=github&logoColor=white&color=00bfff)            ![Tag](https://img.shields.io/github/v/tag/qemuvortax/qemuvortax?style=plastic&logo=github&logoColor=white&color=00bfff)
 
 ---
 
@@ -63,21 +63,24 @@ Go to **Settings → Secrets → Actions → New repository secret** and add the
 
 ## 🧾 Inputs (Updated for V 2.0)
 
-| Input | Description | Default | Notes |
-|-------|--------------|----------|-------|
-| `system_choice` | Pre-set OS to run | `(empty)` | |
-| `boot_mode` | Boot type (`iso` or `qcow2`) | **`qcow2`** | Default changed from `iso` to `qcow2`. |
-| `source_url` | Custom URL (MediaFire, Mega, direct) | `(empty)` | |
-| `vm_name` | VM name | `ME2008` | |
-| `runtime` | Session duration in minutes | **`335`** | Default runtime decreased. |
-| `connection_method` | `tailscale` or `ngrok` | `tailscale` | |
-| `connection_program` | `RDP`, `VNC`, `NoMachine` | `VNC` | |
-| `bios_mode` | Firmware mode (`UEFI` or `BIOS`) | `BIOS` | |
-| **`vnc_password`** | **Set a password for VNC connection.** | **`runner`** | **NEW!** Required for VNC access. |
-| **`upload_qcow2`** | **Upload QCOW2 to MEGA after run** | **`yes`** | **NEW!** Saves the disk image for persistence. |
+| Input | Description | Example |
+|-------|--------------|----------|
+| `system_choice` | Pre-set OS to run | `mint`, `ubuntu`, `kali`, `deepin` |
+| `boot_mode` | Boot type (`iso` or `qcow2`) | `qcow2` |
+| `source_url` | Custom URL (MediaFire, Mega, direct) | `https://example.com/os.iso` |
+| `vm_name` | VM name | `test-linux` |
+| `runtime` | Session duration in minutes | `335` |
+| `connection_method` | `tailscale` or `ngrok` | `tailscale` |
+| `connection_program` | `RDP`, `VNC`, `NoMachine` | `VNC` |
+| `bios_mode` | Firmware mode (`UEFI` or `BIOS`) | `BIOS` |
+| **`vnc_password`** | **Set a password for VNC connection** | `mysecretpass` |
+| **`upload_qcow2`** | **Upload QCOW2 file to Mega: yes or no** | `yes` |
 
-> ⚠️ The system choice must match the selected `boot_mode`.
+> ⚠️ Do not include spaces in URLs 
+> The system choice must match the selected `boot_mode` for correct to booting.
 > Archives are automatically extracted if supported.
+> If you intend to upload the file to Mega after completion, make sure you do not use more than 15 GB of data, as the compressed file may exceed Mega's 20 GB limit.
+> If you want to upload a file and you've added files that don't exceed one mega's limit, make sure you have enough time to compress and upload the file. it might take up to 45 minutes before the upload is complete. otherwise you can end up with none unuploaded file
 
 ---
 
@@ -101,17 +104,19 @@ Go to **Settings → Secrets → Actions → New repository secret** and add the
 | `win7` | QCOW2 | Windows 7 Professional with classic interface and broad software support. | ![Win7](assets/win7.png) |
 | `debian_qcow2` | QCOW2 | Debian 12 Bookworm cloud image preconfigured for QEMU. | Command Line interface |
 
+> All previous releases (V1.3, V1.4, V1.5, V1.6, V1.7, V1.8, V1.9) are included as previous released in [Releases](https://github.com/qemuvortax/Qemu-Vortax/releases) folder.
+
 ---
 
 ## 🖥️ Connection Details
 
-| Type | Address | Tool | Notes |
-|------|----------|------|-------|
-| RDP | `ip:3389` | Remote Desktop Client | User/Pass: `runner` / `runner` |
-| VNC | `ip:5900` | VNC Viewer / Remmina | **Requires `vnc_password`** |
-| NoMachine | `ip:4000` | Fast remote desktop | |
-| Tailscale | secure | Private VPN-style access | |
-| Ngrok | secure | Private tunnel forward access | |
+| Type | Address | Tool |
+|------|----------|------|
+| RDP | `ip:3389` | Remote Desktop Client |
+| VNC | `ip:5900` | VNC Viewer / Remmina |
+| NoMachine | `ip:4000` | Fast remote desktop |
+| Tailscale | secure | Private VPN-style access |
+| Ngrok | secure | Private tunnel forward access |
 
 > When connected through RDP or NoMachine, open **Connect_VNC.sh** inside the desktop to view the QEMU display.
 
@@ -123,6 +128,7 @@ Go to **Settings → Secrets → Actions → New repository secret** and add the
 - Longer runtime = longer session before auto shutdown.
 - Avoid huge compressed archives for quicker starts.
 - Verify links before running custom sources.
+- Make sure not to make run time more than 315 min if you want to upload you qcow2 file after finishing 
 
 ---
 
