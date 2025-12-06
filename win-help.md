@@ -14,7 +14,6 @@
 # 🧩 Windows XP
 
 ![Qemu-Vortax](assets/win-install/QEMUXP.png)
-7Desktop.png, 10Desktop.png, 11Desktop.png, 81Desktop.png, , Windows_Vista.png
 
 📎 **Download ISO**
 ```text
